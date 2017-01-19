@@ -19,6 +19,7 @@ services:
   mqtt:
     container_name: home-mqtt
     build: ./docker-mosquitto-armhf
+    image: mqtt
     restart: always
     volumes:
       - /etc/localtime:/etc/localtime:ro
