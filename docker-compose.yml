@@ -12,6 +12,7 @@ services:
       - /mnt/data/config/homeassistant-arm:/config
     expose:
       - 8123/tcp
+    network_mode: bridge
     depends_on:
       - mqtt
 
@@ -29,3 +30,4 @@ services:
     ports:
       - 1883:1883
       - 9001:9001
+    network_mode: bridge
