@@ -1,0 +1,30 @@
+version: '2'
+services:
+  # home-assistant home automation
+  home:
+    container_name: home-homeassistant
+    image: lsioarmhf/home-assistant
+    restart: always
+    environment:
+      VIRTUAL_HOST: home.diehlabs.lan
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /mnt/data/config/homeassistant-arm:/config
+    expose:
+      - 8123/tcp
+    depends_on:
+      - mqtt
+
+  # mqtt broker
+  mqtt:
+    container_name: home-mqtt
+    build: ./docker-mosquitto-armhf
+    restart: always
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /mnt/data/config/mqtt/config:/mqtt/config
+      - /mnt/data/config/mqtt/log:/mqtt/log
+      - /mnt/data/config/mqtt/data/:/mqtt/data
+    ports:
+      - 1883:1883
+      - 9001:9001
