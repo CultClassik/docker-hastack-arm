@@ -6,7 +6,7 @@ services:
     image: lsioarmhf/home-assistant
     restart: always
     environment:
-      VIRTUAL_HOST: home.diehlabs.lan
+      VIRTUAL_HOST: ha.diehlabs.lan,home.diehlabs.lan
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /mnt/data/config/homeassistant-arm:/config
