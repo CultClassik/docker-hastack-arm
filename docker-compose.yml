@@ -2,11 +2,13 @@ version: '2'
 services:
   # home-assistant home automation
   home:
-    container_name: ha-ui 
+    container_name: ha-hass
     image: lsioarmhf/home-assistant
     restart: always
     environment:
-      VIRTUAL_HOST: ha.diehlabs.lan,home.diehlabs.lan
+      VIRTUAL_HOST: ha.diehlabs.tech,home.diehlabs.lan
+      LETSENCRYPT_HOST: ha.diehlabs.tech
+      LETSENCRYPT_EMAIL: "cultclassik@gmail.com"
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /mnt/data/config/homeassistant-arm:/config
