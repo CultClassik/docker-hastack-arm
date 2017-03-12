@@ -2,14 +2,9 @@ version: '2'
 services:
   # home-assistant home automation
   home:
-<<<<<<< HEAD
-    container_name: home-homeassistant
     build: ./docker-homeassistant-armhf
     image: cultclassik/hass
-=======
     container_name: ha-hass
-    image: lsioarmhf/home-assistant
->>>>>>> ce608b46e74d2411c59cd7d7feae9400d7ff33b1
     restart: always
     environment:
       VIRTUAL_HOST: ha.diehlabs.tech,home.diehlabs.lan
