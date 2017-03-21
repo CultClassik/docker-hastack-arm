@@ -4,13 +4,11 @@ services:
   home:
     build: ./docker-homeassistant-armhf
     image: cultclassik/hass
-#    image: lroguet/rpi-home-assistant
     container_name: ha-hass
     restart: always
     environment:
       VIRTUAL_HOST: "ha.diehlabs.tech,home.diehlabs.lan"
       WEBSOCKETS: 1
-#      VIRTUAL_PROTO: uwsgi
       LETSENCRYPT_HOST: "ha.diehlabs.tech"
       LETSENCRYPT_EMAIL: "cultclassik@gmail.com"
     volumes:
@@ -18,8 +16,6 @@ services:
       - /mnt/data/config/homeassistant-arm:/config
     expose:
       - 8123/tcp
-#    ports:
-#      - 8123:8123
     network_mode: bridge
     depends_on:
       - mqtt
@@ -39,3 +35,20 @@ services:
       - 1883:1883
       - 9001:9001
     network_mode: bridge
+
+  firetv:
+    build: ./docker-firetv-aarch64
+    image: cultclassik/firetv-aarch64
+    #build: ./docker-firetv-armhf
+    #image: cultclassik/firetv-armhf
+    container_name: ha-firetv
+    restart: always
+    environment:
+      VIRTUAL_HOST: "firetv.diehlabs.lan"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /mnt/data/config/firetv:/config
+    expose:
+      - 5556/tcp
+    network_mode: bridge
+
