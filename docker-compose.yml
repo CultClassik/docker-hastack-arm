@@ -1,4 +1,9 @@
 version: '2'
+networks:
+  proxy-tier:
+    external:
+      name: nginx-proxy
+
 services:
   # home-assistant home automation
   home:
@@ -16,7 +21,8 @@ services:
       - /mnt/data/config/homeassistant-arm:/config
     expose:
       - 8123/tcp
-    network_mode: bridge
+    networks:
+      - proxy-tier
     depends_on:
       - mqtt
 
@@ -50,5 +56,5 @@ services:
       - /mnt/data/config/firetv:/config
     expose:
       - 5556/tcp
-    network_mode: bridge
-
+    networks:
+      - proxy-tier

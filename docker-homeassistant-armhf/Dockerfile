@@ -5,11 +5,9 @@ ENV \
 	# set python to use utf-8 rather than ascii.
 	PYTHONIOENCODING="UTF-8"
 
-RUN pip install --upgrade pip
-
-RUN pip3 install pymysql
-
-RUN pip install homeassistant
+RUN pip install --upgrade pip \
+  && pip3 install pymysql \
+  && pip install homeassistant
 
 CMD ["hass", "--open-ui", "--config", "/config"]
 
